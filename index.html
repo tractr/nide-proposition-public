@@ -244,6 +244,9 @@
   .tf-node.tf-chip{background:var(--green);color:#0a3d20}
   .tf-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:var(--acc);font-weight:700;flex:0 0 auto;padding:0 2px}
   @media(max-width:680px){.techflow{flex-direction:column}.tf-arrow{transform:rotate(90deg);padding:4px 0}.tf-col.tf-core{flex:1}}
+  /* lien vers le devis */
+  .dl{display:inline-block;font-family:var(--display);font-size:13px;font-weight:700;color:#fff;background:var(--acc);border:2px solid var(--border);border-radius:var(--r);padding:9px 16px;text-decoration:none;box-shadow:2px 2px 0 var(--border-light)}
+  .dl:hover{box-shadow:3px 3px 0 var(--border-light);transform:translate(-1px,-1px)}
   /* les quatre temps de la mise en route, deux par ligne */
   .sessions{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
   @media(max-width:920px){.sessions{grid-template-columns:1fr}}
@@ -315,29 +318,29 @@
     <div class="line-accent"></div>
     <span class="eyebrow">Proposition d'accompagnement Claude</span>
     <h1>Le pied à l'étrier, puis le rythme</h1>
-    <p class="tagline">Quatre semaines pour installer Claude dans votre quotidien et vous remettre un premier assistant qui tourne. À prix ferme, et sans aucune suite obligatoire.</p>
-    <p class="meta">TRACTR pour Émilie Rozand et Mathilde Tréhu · suite à notre appel du 7 septembre · septembre 2026</p>
+    <p class="tagline">Installer Claude dans votre quotidien et vous remettre un premier assistant qui tourne.</p>
+    <p class="meta">TRACTR pour Émilie Rozand et Mathilde Tréhu · suite à notre appel du 7 septembre 2026</p>
 
     <div class="letter">
       <div class="ph"><img src="assets/photo-guillaume.png" alt="Guillaume Commagnac" onerror="this.style.display='none'"></div>
       <div>
         <p class="hello">Émilie, Mathilde,</p>
         <p>Merci pour l'échange du 7 septembre. Une phrase m'est restée en écrivant ce document : «&nbsp;tout seul, on ne le fera pas&nbsp;». Elle est juste, et elle vaut pour à peu près tout le monde. Ce qui manque rarement, c'est l'envie. Ce qui manque presque toujours, c'est le premier geste et un créneau dans l'agenda.</p>
-        <p>Alors on commence petit et concret : une mise en route de quatre semaines, deux séances à deux, et un premier assistant qu'on construit pour vous entre les deux. Au bout, vous aurez quelque chose qui tourne sur vos vrais dossiers, et vous déciderez à ce moment-là si vous voulez une suite. Pas avant, et sans rien signer de plus aujourd'hui.</p>
-        <p class="sign">Guillaume<span>Directeur France, TRACTR</span></p>
+        <p>Alors on commence petit et concret : une mise en route de deux séances rapprochées, à dix jours d'intervalle, et un premier assistant qu'on construit pour vous entre les deux. Au bout, vous aurez quelque chose qui tourne sur vos vrais dossiers, et vous déciderez à ce moment-là si vous voulez une suite.</p>
+        <p class="sign">Guillaume<span>TRACTR</span></p>
       </div>
     </div>
 
     <div class="glance">
-      <div><b>1 500 € HT</b><small>la mise en route, prix ferme</small></div>
-      <div><b>4 semaines</b><small>2 séances, et ce qu'on construit entre</small></div>
+      <div><b>1 500 € HT</b><small>la mise en route</small></div>
+      <div><b>10 jours</b><small>entre la séance 1 et la séance 2</small></div>
       <div><b>Aucune suite</b><small>obligatoire, rien ne se reconduit</small></div>
       <div><b>Puis 400 € / mois</b><small>si, et seulement si, vous le voulez</small></div>
     </div>
 
     <!-- ===== 1 ===== -->
     <h2 id="entendu"><span class="h2n">1</span>Ce qu'on a entendu</h2>
-    <p class="lead">Votre journée au vert a posé un constat net : le fond ne pose aucun problème, aucun retour négatif sur vos contenus. C'est la forme qui a vieilli, et c'est le quotidien qui vous mange.</p>
+    <p class="lead">Votre journée au vert a posé un constat net : le fond ne pose aucun problème, aucun retour négatif sur vos contenus. C'est la forme qui a vieilli, et surtout la mécanique chronophage au quotidien qui vous mange du temps et de la productivité.</p>
     <p>Vous avez passé juillet à prospecter, ça a produit des rendez-vous qui se tiennent en ce moment, et vous n'avez rien pu mettre en place côté outils. Pas par choix, faute de temps.</p>
 
     <h3>Trois sujets, dans votre ordre à vous</h3>
@@ -346,7 +349,7 @@
         <div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5"/></svg></div>
         <h3 style="margin-top:0">1. Par où commencer</h3>
         <p style="font-size:13px;color:var(--ink2);margin-bottom:0">Le vrai blocage, et il ne se règle pas avec de la documentation. Il faut un premier geste concret, à deux, sur vos vrais outils.</p>
-        <p class="said">«&nbsp;Il faut que tu nous mettes le pied à l'étrier.&nbsp;»<small>Émilie, le 7 septembre</small></p>
+        <p class="said">«&nbsp;Il faut que tu nous mettes le pied à l'étrier.&nbsp;»<small>Émilie</small></p>
       </div>
       <div class="card c-yellow">
         <div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
@@ -369,7 +372,7 @@
         <div class="tf-node"><img class="tf-logo" src="assets/logo-hubspot.svg" alt=""><div>HubSpot<small>dès la mise en route</small></div></div>
         <div class="tf-node"><img class="tf-logo" src="assets/logo-drive.svg" alt=""><div>Google Drive<small>dès la mise en route</small></div></div>
         <div class="tf-node later"><img class="tf-logo" src="assets/logo-wix.svg" alt=""><div>Wix<small>connecteur natif, ensuite</small></div></div>
-        <div class="tf-node later"><img class="tf-logo" src="assets/logo-brevo.svg" alt=""><div>Brevo, Discord<small>à regarder ensemble</small></div></div>
+        <div class="tf-node later"><img class="tf-logo" src="assets/logo-brevo.svg" alt=""><div>Brevo<small>à regarder ensemble</small></div></div>
       </div>
       <div class="tf-arrow">→</div>
       <div class="tf-col tf-core">
@@ -389,12 +392,12 @@
       </div>
     </div>
 
-    <h3>Et Wix ? Vous avez posé la question, on a vérifié</h3>
-    <div class="callout v1"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><b>Oui, et c'est mieux qu'espéré.</b> Wix publie son propre connecteur, intégré nativement dans Claude : rien à installer, il suffit de l'activer avec votre compte Wix. Il permet de lire et modifier le contenu de votre site par instruction, collections et médias compris, donc de faire l'inventaire de votre espace membre sans passer par l'interface une page à la fois. Ce qu'il ne fait pas : corriger tout seul l'affichage de vos PDF sur téléphone. Ça, c'est une décision de mise en page, et elle vient plus tard, quand vous serez autonomes sur l'outil.</div>
+    <h3>Et Wix ? On a vérifié</h3>
+    <div class="callout v1"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><b>C'est mieux qu'espéré.</b> Wix publie son propre connecteur MCP, intégré nativement dans Claude : rien à installer, il suffit de l'activer avec votre compte Wix. Il permet de lire et modifier le contenu de votre site par instruction, collections et médias compris, donc de faire l'inventaire de votre espace membre sans passer par l'interface une page à la fois. Ce qu'il ne fait pas : corriger tout seul l'affichage de vos PDF sur téléphone. Ça, c'est une décision de mise en page, et elle vient plus tard, quand vous serez autonomes sur l'outil.</div>
 
     <!-- ===== 2 ===== -->
-    <h2 id="facturation"><span class="h2n">2</span>Deux choses différentes, deux façons de payer</h2>
-    <p class="lead">C'est la clarification qu'on doit à ce dossier, et elle explique tous les prix qui suivent. Vous former et fabriquer pour vous, ce sont deux métiers, deux rythmes, et ils ne se facturent pas de la même façon.</p>
+    <h2 id="facturation"><span class="h2n">2</span>Deux choses différentes, deux façons de vous accompagner</h2>
+    <p class="lead">C'est la clarification qu'on doit à ce dossier, et elle explique tous les format d'accompagnement et prix qui suivent. Vous former et fabriquer pour vous, ce sont deux métiers, deux rythmes, et ils ne se facturent pas de la même façon.</p>
 
     <div class="grid g2">
       <div class="card">
@@ -413,16 +416,18 @@
 
     <!-- ===== 3 ===== -->
     <h2 id="mise-en-route"><span class="h2n">3</span>La mise en route, et rien d'autre pour l'instant</h2>
-    <p class="lead">Un seul engagement à prendre aujourd'hui : quatre semaines, deux séances, un premier assistant qui tourne. C'est le seul « oui » qu'on vous demande, et il contient les deux : de la formation, et de la production.</p>
+    <p class="lead">Un seul engagement à prendre aujourd'hui : deux séances rapprochées, un premier assistant qui tourne. C'est le seul « oui » qu'on vous demande, et il contient les deux : de la formation, et de la production.</p>
+
+    <p><b>La séance 2 se tient une semaine à dix jours après la première.</b> C'est court volontairement : entre les deux, vous avez un assistant à essayer et des réflexes à prendre, et c'est cette cadence qui transforme un essai en habitude. Un mois d'écart casserait l'élan, et il faudrait tout reprendre.</p>
 
     <div class="sessions">
       <div class="session">
-        <div class="body"><div class="top"><div class="num">1</div><h4>Séance 1 : cartographier et installer</h4></div><p>Qui fait quoi entre vous deux, d'où viennent vos données, ce qui se répète chaque semaine. Installation sur vos deux postes Windows, panorama, quel modèle pour quel usage. On choisit ensemble le premier assistant à construire.</p></div>
-        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>2 h ensemble.</b> Vous repartez avec votre fichier de contexte NID:E, écrit en séance. C'est la fondation de tout le reste, on ne vous le laisse pas en devoir.</span></div>
+        <div class="body"><div class="top"><div class="num">1</div><h4>Séance 1 : valider le contexte, et apprendre à s'en servir</h4></div><p><b>On arrive avec votre fichier de contexte déjà écrit</b>, à partir de tout ce qu'on sait de vous depuis février. Vous le corrigez et vous le complétez, ça va vite. Le reste de la séance passe sur ce qui fait vraiment la différence : les bonnes pratiques, les réflexes et les raccourcis pour sortir du simple chat. Installation sur vos deux postes Windows, quel modèle pour quel usage, et choix du premier assistant.</p></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>2 h ensemble.</b> Vous repartez avec votre fichier de contexte validé, vos deux postes prêts, et une façon de travailler avec l'IA qui ne ressemble plus à une conversation.</span></div>
       </div>
       <div class="session">
         <div class="body"><div class="top"><div class="num">2</div><h4>Entre les deux : on construit</h4></div><p>Connexion de vos mails, de HubSpot et de votre Drive. Construction de votre premier assistant, celui choisi en séance 1. Rédaction de votre guide en ligne, avec le chapitre d'installation Windows déjà écrit pour un autre accompagnement.</p></div>
-        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>Environ 6 h côté TRACTR.</b> Rien à faire de votre côté pendant ce temps-là.</span></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>Rien à faire de votre côté.</b> C'est notre travail, sur notre temps, entre les deux rendez-vous.</span></div>
       </div>
       <div class="session">
         <div class="body"><div class="top"><div class="num">3</div><h4>Séance 2 : remise et essai réel</h4></div><p>On installe, on essaie l'assistant sur de vrais dossiers, on ajuste devant vous. Puis on vous montre comment le modifier vous-mêmes, et on repère ensemble les deux ou trois usages qui mériteraient une suite.</p></div>
@@ -430,11 +435,11 @@
       </div>
       <div class="session">
         <div class="body"><div class="top"><div class="num">4</div><h4>Un mois plus tard : le point de contrôle</h4></div><p>On vérifie que l'usage a tenu, on débloque ce qui a coincé, et on regarde franchement si une suite a du sens pour vous. Si la réponse est non, on vous le dira aussi.</p></div>
-        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>30 min ensemble.</b> Compris, que vous preniez une suite ou non.</span></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>1 h ensemble, offerte.</b> Elle est comprise, que vous preniez une suite ou non.</span></div>
       </div>
     </div>
 
-    <div class="callout v1"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><b>Le premier assistant se choisit entre deux candidats</b>, et c'est vous qui tranchez en séance 1 : la relance commerciale, qui lit vos échanges et HubSpot et prépare vos relances dans votre ton, ou la préparation de deck, qui produit après le premier rendez-vous les deux ou trois slides qui changent, dans votre gabarit.</div>
+    <div class="callout"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M12 7l-5 5v5"/><path d="M12 7l5 5v5"/><polyline points="4.5 15 7 17.5 9.5 15"/><polyline points="14.5 15 17 17.5 19.5 15"/></svg><b>Le premier assistant se choisit entre deux candidats</b>, et c'est vous qui tranchez en séance 1 : la relance commerciale, qui lit vos échanges et HubSpot et prépare vos relances dans votre ton, ou la préparation de deck, qui produit après le premier rendez-vous les deux ou trois slides qui changent, dans votre gabarit.</div>
 
     <!-- ===== 4 ===== -->
     <h2 id="prix"><span class="h2n">4</span>Le prix</h2>
@@ -443,7 +448,7 @@
     <div class="pricing">
       <div class="pblock">
         <div class="ph"><div class="lbl">La mise en route</div><b>1 500 € HT <small>prix ferme</small></b></div>
-        <div class="pb">Quatre semaines, du premier rendez-vous au point de contrôle.
+        <div class="pb">Deux séances en une dizaine de jours, puis un point de contrôle un mois plus tard.
           <ul class="checklist">
             <li>Deux séances de deux heures, à deux, en visio</li>
             <li>La cartographie de vos usages et votre fichier de contexte</li>
@@ -463,12 +468,12 @@
             <li>Si ça vous a suffi, ça s'arrête là et c'est très bien</li>
             <li>La suite se décide au point de contrôle, pas avant</li>
           </ul>
-          <p style="font-size:13px;color:var(--muted);margin:14px 0 0">Facturation : 50 % à la commande, solde à la remise en séance 2.</p>
+          <p style="font-size:13px;color:var(--muted);margin:14px 0 0">Facturation : une seule facture, à la commande.</p>
         </div>
       </div>
     </div>
 
-    <div class="callout"><b>Et le devis de juin ?</b> Il était de 2 000 € HT pour trois séances de formation. Celui-ci le remplace : il coûte moins cher, il dure moins longtemps, et il ne se contente pas de vous former, il vous laisse un outil qui tourne. C'est ce que vous nous avez demandé le 7 septembre.</div>
+    <div class="callout"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.2 2.5c-.6.2-.9.7-.9 1.3v.4"/><line x1="12" y1="16.6" x2="12" y2="16.7"/></svg><b>Et le devis de juin ?</b> Il était de 2 000 € HT pour trois séances de formation. Celui-ci le remplace : il coûte moins cher, il dure moins longtemps, et il ne se contente pas de vous former, il vous laisse un outil qui tourne. C'est ce que vous nous avez demandé le 7 septembre.</div>
 
     <!-- ===== 5 ===== -->
     <h2 id="apres"><span class="h2n">5</span>Ce qui peut venir après</h2>
@@ -499,6 +504,14 @@
       </div>
     </div>
 
+    <h3>Assistant, skill, agent : de quoi on parle</h3>
+    <div class="grid g3">
+      <div class="card c-blue" style="margin:0"><h3 style="margin-top:0;font-size:15px">Un skill</h3><p style="font-size:13px;color:var(--ink2);margin-bottom:0">Une marche à suivre écrite une fois pour toutes, pour une tâche précise : comment vous relancez, comment votre deck se construit. C'est le mot de l'outil, et c'est ce qu'on fabrique.</p></div>
+      <div class="card c-blue" style="margin:0"><h3 style="margin-top:0;font-size:15px">Un assistant</h3><p style="font-size:13px;color:var(--ink2);margin-bottom:0">Ce skill, plus votre contexte NID:E et l'accès à vos outils. Vous lui demandez, il produit, vous relisez avant d'envoyer. C'est ce qu'on met en place chez vous.</p></div>
+      <div class="card c-blue" style="margin:0"><h3 style="margin-top:0;font-size:15px">Un agent</h3><p style="font-size:13px;color:var(--ink2);margin-bottom:0">Le même assistant, mais qui se déclenche seul et enchaîne les étapes sans vous. Le point du lundi en est un. On y va quand la confiance est faite, pas avant.</p></div>
+    </div>
+    <p class="note" style="margin-top:14px">On dit « assistant » dans tout ce document parce que c'est ce qui décrit le mieux ce que vous aurez entre les mains. Passer à l'agent ne change pas le travail de fabrication, ça change qui appuie sur le bouton.</p>
+
     <h3>Les trois candidats sortis de notre appel</h3>
     <div class="grid g3">
       <div class="card" style="margin:0"><h3 style="margin-top:0;font-size:15px">L'assistant de relance</h3><p style="font-size:13px;margin-bottom:0">Il lit vos échanges et HubSpot, et prépare les relances et les réponses dans votre ton. Vous relisez, vous envoyez.</p></div>
@@ -511,7 +524,7 @@
     <h2 id="votre-part"><span class="h2n">6</span>Ce que ça demande de votre côté</h2>
     <p class="lead">Vous avez demandé à savoir ce que ça représente pour vous. La réponse honnête :</p>
     <div class="grid g3 kpicards">
-      <div class="card"><div class="lbl">Pendant la mise en route</div><b style="font-size:17px">4 h 30 de rendez-vous</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">étalées sur quatre à cinq semaines</p></div>
+      <div class="card"><div class="lbl">Pendant la mise en route</div><b style="font-size:17px">5 h de rendez-vous</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">deux séances en dix jours, un point un mois après</p></div>
       <div class="card"><div class="lbl">Entre les deux séances</div><b style="font-size:17px">1 heure par semaine, chacune</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">sur du travail que vous faites déjà</p></div>
       <div class="card"><div class="lbl">À chaque séance</div><b style="font-size:17px">Quelque chose de fait</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">un fichier, un assistant, un plan</p></div>
     </div>
@@ -526,22 +539,29 @@
       <div class="phase"><div class="p">7 septembre</div><div>Appel de reprise : vos trois sujets, vos contraintes, votre calendrier.</div><div class="d done">fait</div></div>
       <div class="phase"><div class="p">Votre oui</div><div>Vous validez la mise en route, on envoie le devis et on pose la date.</div><div class="d wait">de votre côté</div></div>
       <div class="phase"><div class="p">Séance 1</div><div>Fin septembre ou début octobre. On cartographie, on installe, on choisit le premier assistant.</div><div class="d">fin sept. / oct.</div></div>
-      <div class="phase"><div class="p">Séance 2</div><div>Trois à quatre semaines plus tard. Remise de l'assistant et essai sur vos vrais dossiers.</div><div class="d">octobre</div></div>
+      <div class="phase"><div class="p">Séance 2</div><div>Une semaine à dix jours après la séance 1, pas plus : c'est la cadence qui fait entrer l'outil dans vos habitudes.</div><div class="d">octobre</div></div>
       <div class="phase"><div class="p">Point de contrôle</div><div>Un mois après la remise. On regarde ce qui a tenu, et vous décidez d'une suite ou non.</div><div class="d">novembre</div></div>
     </div>
 
     <div class="grid g2">
-      <div class="card"><h3 style="margin-top:0">Facturation</h3><p style="font-size:13.5px;margin-bottom:0">50 % à la commande, solde à la remise en séance 2. Le devis signé et l'acompte précèdent la séance 1. Si vous prenez une suite, l'accompagnement est facturé en début de chaque mois, et chaque assistant fait l'objet de son propre devis.</p></div>
+      <div class="card"><h3 style="margin-top:0">Facturation</h3><p style="font-size:13.5px;margin-bottom:0">Une seule facture, réglée à la commande. Le devis signé et le règlement précèdent la séance 1. Si vous prenez une suite, l'accompagnement est facturé en début de chaque mois, et chaque assistant fait l'objet de son propre devis.</p></div>
       <div class="card"><h3 style="margin-top:0">Cadre</h3><p style="font-size:13.5px;margin-bottom:0">Une séance déplacée n'est pas perdue, elle se reporte. Le support entre les séances se fait par écrit, réponse sous 48 heures ouvrées ; il couvre les questions et le déblocage. Guillaume est absent du 17 au 24 octobre. Validité de la proposition : 30 jours.</p></div>
+    </div>
+
+    <h3>Comment on démarre, concrètement</h3>
+    <div class="card c-green">
+      <p style="margin-top:0"><b>Un devis d'une page, à nous renvoyer signé avec la mention « bon pour accord ».</b></p>
+      <p style="font-size:13.5px;margin-bottom:0">À réception, deux choses partent en même temps : on bloque vos deux créneaux dans nos agendas, et la facture vous est envoyée. Le règlement précède la première séance. Il n'y a pas de contrat-cadre à signer ni de conditions à négocier derrière.</p>
+      <p style="margin:14px 0 0"><a href="devis-nide-mise-en-route.pdf" class="dl">Ouvrir le devis (PDF)</a></p>
     </div>
 
     <h3>Les prochaines étapes</h3>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div class="txt"><b>Nous dire oui pour la mise en route,</b> ou ce qui vous manque pour trancher. Si vous préférez en parler de vive voix, on se cale trente minutes à trois avec Mathilde.</div><div class="when"><a href="https://cal.com/guillaume-tractr/" target="_blank" rel="noopener">réserver un créneau</a></div></div>
+      <div class="step"><div class="num">1</div><div class="txt"><b>Nous renvoyer le devis signé,</b> ou nous dire ce qui vous manque pour trancher. Si vous préférez en parler de vive voix, on se cale trente minutes à trois avec Mathilde.</div><div class="when"><a href="https://cal.com/guillaume-tractr/" target="_blank" rel="noopener">réserver un créneau</a></div></div>
       <div class="step"><div class="num">2</div><div class="txt"><b>Poser la date de la séance 1,</b> fin septembre ou début octobre.</div><div class="when">avec le oui</div></div>
       <div class="step"><div class="num">3</div><div class="txt"><b>Nous confirmer qui utilise quoi entre vous deux,</b> en deux lignes ou une note vocale. Ça nous sert à préparer la première séance sur vos vrais usages plutôt que sur des exemples génériques.</div><div class="when">avant la séance 1</div></div>
     </div>
-    <div class="callout"><b>Pour démarrer :</b> la mise en route, 1 500 € HT, première séance début octobre. Une réponse par mail suffit, on s'occupe du reste.</div>
+    <div class="callout"><b>Pour démarrer :</b> la mise en route, 1 500 € HT, première séance début octobre. Le devis signé suffit, on s'occupe du reste.</div>
 
     <div class="signoff">
       <img src="assets/photo-guillaume.png" alt="" onerror="this.style.display='none'">
