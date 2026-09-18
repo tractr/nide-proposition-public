@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>TRACTR × NID:E : proposition d'accompagnement Claude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== TRACTR NÉO-BRUT — design tokens (NE PAS modifier sauf demande explicite) ===== */
+  :root{
+    --bg:#FDFDFD; --bg-alt:#F4F4FF; --card-bg:#ffffff;
+    --ink:#1a1a1a; --ink2:#1a1a1a; --muted:#5a5a5a; --faint:#5a5a5a;
+    --acc:#0000ff; --acc-soft:#E8E8FF; --acc-mid:#6666ff;
+    --pink:#ffdcf0; --pink-strong:#ffb8dd; --green:#B3F4D1; --yellow:#FFF2C8; --blue-light:#8BD8FD;
+    --border:#1a1a1a; --border-light:#d0d0d0;
+    --v1ink:#0a7d3a; --v2ink:#9a6207;
+    --r:3px;
+    --sh:4px 4px 0 var(--border-light);
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:'DM Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --display:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body::before{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-index:9999;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
+  .wrap{display:grid;grid-template-columns:264px 1fr;max-width:1180px;margin:0 auto;gap:0;background:var(--bg)}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:28px 20px;
+    border-right:2px solid var(--border);background:var(--bg)}
+  aside .brand{display:flex;flex-direction:column;gap:9px}
+  aside .brand .sb-title{font-family:var(--display);font-size:13.5px;line-height:1.35}
+  aside .brand .sb-blue{color:var(--acc);font-weight:700}
+  aside .brand .sb-reg{color:var(--muted);font-weight:400}
+  aside .brand .sb-bold{color:var(--ink);font-weight:700}
+  nav{margin-top:26px;display:flex;flex-direction:column;gap:2px}
+  nav a{color:var(--ink);text-decoration:none;font-size:13px;padding:7px 10px;border:2px solid transparent;
+    border-radius:var(--r);transition:.12s;display:flex;gap:9px;align-items:center;font-weight:500}
+  nav a .n{color:var(--acc);font-family:var(--display);font-variant-numeric:tabular-nums;font-size:12px;font-weight:700;min-width:16px}
+  nav a:hover{background:var(--acc-soft)}
+  nav a.active{background:var(--acc);color:#fff;border-color:var(--border);box-shadow:3px 3px 0 var(--border-light);font-weight:600}
+  nav a.active .n{color:#fff}
+  /* doc-switcher : navigation entre plusieurs documents liés (ex. audit + proposition) */
+  .docnav{display:flex;gap:6px;margin-top:14px}
+  .docnav a{flex:1;text-align:center;font-family:var(--display);font-size:10.5px;font-weight:700;padding:8px 6px;border:2px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--ink);background:#fff;box-shadow:2px 2px 0 var(--border-light);transition:.12s}
+  .docnav a.active{background:var(--acc);color:#fff}
+  .docnav a:hover:not(.active){background:var(--acc-soft)}
+  main{padding:46px 56px 90px;min-width:0}
+  .line-accent{width:56px;height:5px;background:var(--acc);margin:0 0 14px}
+  .cobrand{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+  .cobrand img{display:block;width:auto}
+  .cobrand .cb-tractr{height:26px}
+  .cobrand .cb-client{height:34px}
+  .cobrand .cb-x{font-family:var(--display);font-size:22px;color:var(--border-light);font-weight:400;line-height:1}
+  .eyebrow{display:inline-block;font-family:var(--display);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#fff;background:var(--acc);border:2px solid var(--border);padding:5px 12px;border-radius:var(--r);box-shadow:3px 3px 0 var(--border-light);margin-bottom:16px}
+  h1{font-family:var(--display);font-size:34px;letter-spacing:-.03em;margin:0 0 10px;font-weight:700;line-height:1.1}
+  .tagline{color:var(--ink2);font-size:16px;margin:0 0 12px;max-width:62ch;line-height:1.5}
+  .meta{color:var(--muted);font-size:12.5px;font-family:var(--mono);padding-bottom:20px;border-bottom:2px solid var(--border)}
+  h2{font-family:var(--display);font-size:24px;letter-spacing:-.02em;margin:54px 0 6px;font-weight:700;line-height:1.15;display:flex;align-items:center;gap:12px}
+  h2 .h2n{font-family:var(--display);font-size:14px;font-weight:700;color:#fff;background:var(--acc);width:32px;height:32px;
+    display:flex;align-items:center;justify-content:center;border:2px solid var(--border);border-radius:var(--r);box-shadow:3px 3px 0 var(--border-light);flex:none}
+  h3{font-family:var(--display);font-size:18px;margin:28px 0 8px;font-weight:600;letter-spacing:-.01em}
+  p{margin:11px 0;max-width:74ch}
+  .lead{color:var(--muted);max-width:64ch;font-size:15.5px}
+  code{font-family:var(--mono);font-size:.85em;background:var(--acc-soft);padding:2px 6px;border-radius:3px;color:var(--acc);border:1px solid var(--acc-mid)}
+  .card{background:var(--card-bg);border:2px solid var(--border);border-radius:var(--r);padding:18px 20px;margin:16px 0;box-shadow:var(--sh)}
+  .card.c-blue{background:var(--acc-soft)}.card.c-pink{background:var(--pink)}.card.c-green{background:var(--green)}.card.c-yellow{background:var(--yellow)}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:920px){.wrap{grid-template-columns:1fr}aside{display:none}.g2,.g3{grid-template-columns:1fr}main{padding:28px 22px}}
+  .pill{display:inline-block;font-family:var(--display);font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:var(--r);vertical-align:middle;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--border)}
+  .pill.v1{background:var(--green);color:#0a3d20}
+  .pill.v2{background:var(--yellow);color:#5c3d00}
+  .pill.man{background:#fff;color:var(--ink);border-style:dashed}
+  .pill.opt{background:var(--acc-soft);color:var(--acc)}
+  .pill.low{background:var(--green);color:#0a3d20}
+  .pill.mid{background:var(--yellow);color:#5c3d00}
+  .pill.high{background:var(--pink);color:#7a1340}
+  .pill.todo{background:#fff;color:var(--muted);border-style:dashed}
+  .feat{font-family:var(--display);font-size:11px;color:#fff;background:var(--acc);padding:1px 7px;border-radius:3px;font-weight:700;white-space:nowrap}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:14px 0;background:var(--card-bg);border:2px solid var(--border);box-shadow:var(--sh)}
+  th{font-family:var(--display);background:var(--acc);color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;text-align:left;padding:9px 13px;border-bottom:2px solid var(--border)}
+  td{text-align:left;padding:9px 13px;border-bottom:1.5px solid var(--border-light);vertical-align:top}
+  tbody tr:last-child td,table tr:last-child td{border-bottom:none}
+  tr:nth-child(even) td{background:var(--bg-alt)}
+  .ok{color:var(--v1ink);font-weight:600}.warn{color:var(--v2ink);font-weight:600}.bad{color:#cc0000;font-weight:600}.mut{color:var(--muted)}
+  ul{margin:8px 0;padding-left:20px}li{margin:6px 0;max-width:74ch}
+  .callout{border:2px solid var(--border);background:var(--acc-soft);padding:14px 18px;border-radius:var(--r);margin:18px 0;font-size:14px;color:var(--ink2);box-shadow:var(--sh)}
+  .callout.v1{background:var(--green)}.callout.v2{background:var(--yellow)}.callout.warn{background:var(--pink)}
+  .callout b{color:var(--ink)}
+  .callout p{max-width:none}
+  /* stack de couches techniques (présentation de technos / briques) */
+  .stack{display:flex;flex-direction:column;gap:12px}
+  .layer{display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;background:var(--card-bg);
+    border:2px solid var(--border);border-radius:var(--r);padding:14px 18px;box-shadow:var(--sh)}
+  .layer .tech{font-family:var(--display);font-weight:700;font-size:15px}
+  .layer .tech small{display:block;color:var(--muted);font-weight:500;font-family:var(--mono);font-size:11px;margin-top:3px}
+  .layer .tech .techlogo{width:36px;height:36px;border-radius:8px;display:block;margin-bottom:8px;border:2px solid var(--border);object-fit:contain;background:#fff}
+  .layer .why{font-size:13.5px;color:var(--muted);max-width:none}
+  .techlink{font-family:var(--display);font-size:11px;font-weight:600;color:var(--acc);text-decoration:none;border:1.5px solid var(--acc);border-radius:3px;padding:1px 7px;margin-left:6px;white-space:nowrap}
+  .techlink:hover{background:var(--acc-soft)}
+  /* scopebox : périmètre inclus / exclu (hors scope, post-MVP) */
+  .scopebox{border:2px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:var(--sh)}
+  .scopebox.out{background:var(--yellow)}
+  .scopebox h3{margin:0 0 10px;font-size:15px}
+  /* phase : ligne de phasage (libellé | description | durée) */
+  .phase{display:grid;grid-template-columns:104px 1fr auto;gap:18px;align-items:start;padding:14px 0;border-bottom:1.5px solid var(--border-light)}
+  .phase:last-child{border-bottom:none}
+  .phase .p{font-family:var(--display);font-weight:700;color:var(--acc)}
+  /* Etiquette de delai : largeur minimale fixe calee sur le libelle le plus long, texte centre,
+     pour que la colonne des delais forme une ligne. La couleur porte le STATUT, pas la duree. */
+  .phase .d{font-family:var(--mono);font-size:12px;color:var(--ink);white-space:nowrap;background:var(--acc-soft);padding:3px 9px;border-radius:3px;border:2px solid var(--border);min-width:112px;text-align:center;display:inline-block}
+  .phase .d.done{background:var(--ok-soft,#e6f6ec);color:var(--ok-ink,#0a6b3d)}   /* acquis */
+  .phase .d.wait{background:var(--warn-soft,#fdf3d0);color:var(--warn-ink,#7a5b00)} /* attend le client */
+  @media(max-width:560px){.phase{grid-template-columns:1fr;gap:6px}.phase .d{justify-self:start}}
+  /* steps : étapes numérotées (prochaines étapes) */
+  .steps{display:grid;gap:14px;margin:16px 0}
+  .step{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--card-bg);border:2px solid var(--border);border-radius:var(--r);padding:15px 18px;box-shadow:var(--sh)}
+  .step .num{width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border:2px solid var(--border);box-shadow:2px 2px 0 var(--border-light);flex:none}
+  .step .txt{font-size:13.5px;color:var(--ink2);max-width:none}
+  .step .txt b{font-family:var(--display)}
+  .step .when{font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--acc-soft);padding:4px 10px;border-radius:3px;border:2px solid var(--border);white-space:nowrap}
+  @media(max-width:560px){.step{grid-template-columns:auto 1fr}.step .when{grid-column:2;justify-self:start;margin-top:4px}}
+  /* total budget (encadré accent plein) */
+  .tot{display:flex;justify-content:space-between;align-items:baseline;background:var(--acc);color:#fff;
+    border:2px solid var(--border);border-radius:var(--r);padding:16px 22px;margin-top:16px;box-shadow:4px 4px 0 var(--border-light)}
+  .tot .mut{color:rgba(255,255,255,.82)}
+  .tot b{font-family:var(--display);font-size:19px;letter-spacing:-.01em}
+  .erd{font-family:var(--mono);font-size:12.5px;line-height:1.7;white-space:pre;overflow:auto;
+    background:var(--card-bg);border:2px solid var(--border);border-radius:var(--r);padding:18px;color:var(--ink2);box-shadow:var(--sh)}
+  .note{font-size:12.5px;color:var(--muted);font-style:italic;max-width:74ch}
+  .kpicards .card{margin:0;border-top:5px solid var(--acc)}
+  .kpicards .lbl{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--acc);text-transform:uppercase}
+  /* tiroir : option à la carte (devis à tiroir) */
+  .tiroir{border:2px solid var(--border);border-radius:var(--r);padding:16px 18px;margin:14px 0;background:var(--card-bg);box-shadow:var(--sh);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+  .tiroir .t{font-family:var(--display);font-weight:700;font-size:15px;margin-bottom:3px}
+  .tiroir .desc{font-size:13px;color:var(--muted)}
+  .tiroir .price{font-family:var(--display);font-size:13px;font-weight:700;color:#fff;white-space:nowrap;background:var(--acc);padding:6px 12px;border-radius:3px;border:2px solid var(--border);text-align:center}
+  .tiroir .price.todo{color:var(--muted);background:#fff;border:2px dashed var(--border-light)}
+  /* Travail deja livre, montre a 0 EUR dans une proposition sur client actif (archetype C). */
+  .tiroir .price.done{color:var(--ok-ink,#0a6b3d);background:var(--ok-soft,#e6f6ec);border:2px solid var(--border)}
+  /* startbox : encadré "on commence ici" (point d'entrée mis en avant) */
+  .startbox{border:2px solid var(--border);border-radius:var(--r);box-shadow:5px 5px 0 var(--acc-mid);background:var(--acc-soft);padding:4px 22px 20px;margin:18px 0}
+  .ico{width:17px;height:17px;vertical-align:-3px;margin-right:8px;fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .facts{display:flex;gap:34px;flex-wrap:wrap;margin:16px 0}
+  .fact .n{font-family:var(--display);font-size:26px;font-weight:700;color:var(--acc);line-height:1.05}
+  .fact .l{font-size:12.5px;color:var(--muted);margin-top:4px;max-width:26ch}
+  .logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px;margin:10px 0 0;max-width:780px}
+  .logos .lg{background:#fff;border:2px solid var(--border);border-radius:3px;box-shadow:2px 2px 0 var(--border-light);height:58px;display:flex;align-items:center;justify-content:center;padding:10px;transition:.12s}
+  .logos a.lg:hover{box-shadow:3px 3px 0 var(--acc-mid);transform:translate(-1px,-1px)}
+  .logos .lg img{max-height:30px;max-width:100%;width:auto;object-fit:contain}
+  .team{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+  .tcard{display:grid;grid-template-columns:auto 1fr;gap:14px;background:var(--card-bg);border:2px solid var(--border);border-radius:3px;box-shadow:var(--sh);padding:16px}
+  .tcard .av{width:54px;height:54px;border-radius:50%;border:2px solid var(--acc);background:var(--acc-soft);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:var(--acc);font-size:16px;overflow:hidden;flex:none}
+  .tcard .av img{width:100%;height:100%;object-fit:cover}
+  .tcard .nm{font-family:var(--display);font-weight:700;font-size:15px}
+  .tcard .rl{font-size:12px;color:var(--acc);font-weight:600;font-family:var(--display);margin:2px 0 6px}
+  .tcard .bio{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .tcard .bio .role-line{display:block;margin-top:8px}
+  @media(max-width:920px){.team{grid-template-columns:1fr}}
+  a:focus-visible,nav a:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:2px}
+  .side-foot{margin-top:22px;padding-top:16px;border-top:2px solid var(--border);font-size:12px;font-family:var(--display)}
+  .side-foot a{color:var(--acc);text-decoration:none;font-weight:600;word-break:break-all}
+  .side-foot a:hover{text-decoration:underline}
+  main a{color:var(--acc);font-weight:600}
+  @media(max-width:920px){main table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  /* Bouton retour en haut : rond bleu 44px, apparait apres 600px de scroll. */
+  .backtop{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--acc);border:2px solid var(--border);box-shadow:var(--sh);color:#fff;font-size:18px;line-height:1;display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:50}
+  .backtop.show{opacity:1;pointer-events:auto}
+  @media(prefers-reduced-motion:reduce){.backtop{transition:none}}
+  @media print{.backtop{display:none}}
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:14px 0}
+  .quote{display:flex;flex-direction:column;background:var(--card-bg);border:2px solid #D4A017;border-radius:var(--r);box-shadow:4px 4px 0 #F0DFA0;padding:16px 18px}
+  .quote p{font-size:13px;font-style:italic;color:var(--ink2);margin:0 0 12px;max-width:none;flex:1}
+  .qfoot{display:flex;align-items:center;gap:10px}
+  .qav{width:38px;height:38px;border-radius:50%;border:2px solid var(--border);background:var(--acc-soft);overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:var(--acc);font-size:13px}
+  .qav img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+  .qmeta{display:flex;flex-direction:column;line-height:1.25}
+  .qn{font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink)}
+  .qc{font-size:11px;color:var(--muted)}
+  @media(max-width:920px){.quotes{grid-template-columns:1fr}}
+  details.fold{border:2px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);margin:16px 0;background:var(--card-bg)}
+  details.fold>summary{cursor:pointer;list-style:none;padding:13px 18px;font-family:var(--display);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--acc-soft)}
+  details.fold>summary::-webkit-details-marker{display:none}
+  details.fold>summary::after{content:"+";font-family:var(--display);font-size:18px;color:var(--acc);font-weight:700;line-height:1}
+  details.fold[open]>summary::after{content:"–"}
+  details.fold>summary:hover{background:#dcdcff}
+  details.fold .fold-body{padding:2px 18px 16px}
+  details.fold .fold-body>:first-child{margin-top:6px}
+  @media print{aside{display:none}.wrap{grid-template-columns:1fr}main{padding:0}body::before{display:none}
+    .card,.layer,.scopebox,.tiroir,table,.erd,.tot,.callout,details.fold,.startbox,.step{box-shadow:none}h2{break-after:avoid}table,.card{break-inside:avoid}}
+</style>
+<style>
+  /* ===== Composants propres à cette proposition ===== */
+  /* mot d'ouverture signé, avec photo */
+  .letter{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;background:var(--card-bg);border:2px solid var(--border);border-radius:var(--r);box-shadow:5px 5px 0 var(--acc-mid);padding:22px 24px;margin:30px 0 0}
+  .letter .ph{width:92px;height:92px;border-radius:50%;border:2px solid var(--border);overflow:hidden;background:var(--acc-soft);box-shadow:3px 3px 0 var(--border-light)}
+  .letter .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .letter p{margin:0 0 10px;font-size:15px;max-width:none}
+  .letter .hello{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:8px}
+  .letter .sign{font-family:var(--display);font-weight:700;margin:14px 0 0;font-size:14px}
+  .letter .sign span{display:block;font-family:var(--sans);font-weight:400;color:var(--muted);font-size:12.5px}
+  @media(max-width:560px){.letter{grid-template-columns:1fr}.letter .ph{width:72px;height:72px}}
+  /* en bref : quatre repères sous le mot d'ouverture */
+  .glance{display:grid;grid-template-columns:repeat(4,1fr);border:2px solid var(--border);border-radius:var(--r);background:var(--acc);color:#fff;margin:18px 0 0;box-shadow:var(--sh)}
+  .glance div{padding:14px 16px;border-right:2px solid rgba(255,255,255,.28)}
+  .glance div:last-child{border-right:none}
+  .glance b{display:block;font-family:var(--display);font-size:18px;letter-spacing:-.01em;line-height:1.15}
+  .glance small{display:block;font-size:11.5px;opacity:.85;margin-top:3px}
+  @media(max-width:920px){.glance{grid-template-columns:1fr 1fr}.glance div:nth-child(2){border-right:none}.glance div:nth-child(-n+2){border-bottom:2px solid rgba(255,255,255,.28)}}
+  /* icône en tête de carte */
+  .cico{width:40px;height:40px;border:2px solid var(--border);border-radius:var(--r);background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:2px 2px 0 var(--border-light);flex:none}
+  .cico svg{width:21px;height:21px;fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  /* verbatim de l'appel */
+  .said{font-family:var(--display);font-size:13px;font-style:italic;color:var(--ink);border-left:4px solid var(--acc);padding:2px 0 2px 10px;margin:12px 0 0;max-width:none}
+  .said small{display:block;font-style:normal;font-family:var(--sans);color:var(--muted);font-size:11px;margin-top:3px}
+  /* engagements : icône + texte, sans encadré */
+  .plain{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;margin:14px 0}
+  .plain h3{margin:6px 0 4px;font-size:16px}
+  .plain p{margin:0;font-size:13.5px;color:var(--ink2)}
+  /* checklist */
+  ul.checklist{list-style:none;padding-left:0}
+  ul.checklist li{position:relative;padding-left:26px}
+  ul.checklist li::before{content:'';position:absolute;left:0;top:2px;width:16px;height:16px;border:2px solid var(--border);border-radius:3px;background:var(--green)}
+  ul.checklist li::after{content:'';position:absolute;left:4px;top:6px;width:8px;height:4px;border-left:2px solid var(--v1ink);border-bottom:2px solid var(--v1ink);transform:rotate(-45deg)}
+  /* techflow : vos outils -> Claude -> ce que vous en tirez */
+  .techflow{display:flex;align-items:stretch;gap:12px;margin:18px 0;flex-wrap:wrap}
+  .tf-col{display:flex;flex-direction:column;gap:10px;flex:1;min-width:158px}
+  .tf-col.tf-core{flex:0 0 176px}
+  .tf-group{display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center}
+  .tf-label{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .tf-node{display:flex;align-items:center;gap:9px;background:var(--card-bg);border:2px solid var(--border);border-radius:var(--r);padding:9px 12px;box-shadow:var(--sh);font-family:var(--display);font-weight:700;font-size:12.5px}
+  .tf-node small{display:block;font-family:var(--mono);font-weight:500;color:var(--muted);font-size:10px}
+  .tf-node.later{border-style:dashed;box-shadow:none}
+  .tf-logo{width:24px;height:24px;border-radius:6px;object-fit:contain;background:#fff;border:1.5px solid var(--border-light);padding:2px;flex:none}
+  .tf-node.tf-claude{background:var(--acc-soft);flex-direction:column;text-align:center;padding:18px 14px;font-size:14px}
+  .tf-node.tf-claude .tf-logo{width:34px;height:34px}
+  .tf-node.tf-chip{background:var(--green);color:#0a3d20}
+  .tf-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:var(--acc);font-weight:700;flex:0 0 auto;padding:0 2px}
+  @media(max-width:680px){.techflow{flex-direction:column}.tf-arrow{transform:rotate(90deg);padding:4px 0}.tf-col.tf-core{flex:1}}
+  /* les quatre temps de la mise en route, deux par ligne */
+  .sessions{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media(max-width:920px){.sessions{grid-template-columns:1fr}}
+  /* programme : trois colonnes mois, deux séances par mois */
+  .months{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0}
+  .month{display:flex;flex-direction:column;gap:12px}
+  .month .mh{display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:3px solid var(--acc);padding-bottom:6px}
+  .month .mh b{font-family:var(--display);font-size:20px;letter-spacing:-.02em;color:var(--acc)}
+  .month .mh small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .month.opt .mh{border-bottom-color:var(--v1ink)}
+  .month.opt .mh b{color:var(--v1ink)}
+  .session{background:var(--card-bg);border:2px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);display:flex;flex-direction:column;overflow:hidden;flex:1}
+  .session .body{padding:14px 16px;flex:1}
+  .session .top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .session .num{width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--border);flex:none;font-size:12.5px}
+  .session h4{font-family:var(--display);font-size:14.5px;margin:0;line-height:1.2}
+  .session p{font-size:12.8px;color:var(--ink2);margin:0}
+  .session .out{border-top:2px solid var(--border);background:var(--green);padding:9px 16px 10px;font-size:12.5px;color:#0a3d20;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start}
+  .session .out svg{width:15px;height:15px;fill:none;stroke:#0a3d20;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+  @media(max-width:920px){.months{grid-template-columns:1fr}}
+  /* prix : deux blocs et un total */
+  .pricing{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
+  .pblock{border:2px solid var(--border);border-radius:var(--r);background:var(--card-bg);box-shadow:var(--sh);display:flex;flex-direction:column;overflow:hidden}
+  .pblock .ph{padding:16px 18px 12px;border-bottom:2px solid var(--border);background:var(--acc-soft)}
+  .pblock .ph .lbl{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+  .pblock .ph b{display:block;font-family:var(--display);font-size:24px;letter-spacing:-.02em;margin-top:2px;line-height:1.1}
+  .pblock .ph b small{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
+  .pblock .pb{padding:14px 18px 16px;font-size:13.5px;flex:1}
+  .pblock .pb ul{margin:8px 0 0}
+  .pblock .pb li{font-size:13px}
+  .durations{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0}
+  .dur{border:2px solid var(--border);border-radius:var(--r);background:var(--card-bg);box-shadow:var(--sh);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .dur.reco{background:var(--green);box-shadow:5px 5px 0 var(--acc-mid)}
+  .dur .t{font-family:var(--display);font-weight:700;font-size:15px}
+  .dur .desc{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .dur .sum{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;white-space:nowrap}
+  .dur .sum small{display:block;font-size:11px;font-weight:500;color:var(--muted);text-align:right}
+  @media(max-width:920px){.pricing,.durations{grid-template-columns:1fr}}
+  .signoff{display:flex;gap:16px;align-items:center;margin-top:30px}
+  .signoff img{width:62px;height:62px;border-radius:50%;border:2px solid var(--border);object-fit:cover}
+  .signoff p{margin:0;font-size:13.5px}
+  @media print{.g2,.pricing,.durations,.sessions{grid-template-columns:1fr 1fr!important}.g3,.months{grid-template-columns:repeat(3,1fr)!important}.glance{grid-template-columns:repeat(4,1fr)!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside>
+    <div class="brand">
+      <div class="sb-title"><span class="sb-blue">Proposition d'accompagnement</span> <span class="sb-reg">pour</span> <span class="sb-bold">NID:E</span></div>
+    </div>
+    <nav id="nav">
+      <a href="#entendu"><span class="n">1</span>Ce qu'on a entendu</a>
+      <a href="#facturation"><span class="n">2</span>Deux façons de payer</a>
+      <a href="#mise-en-route"><span class="n">3</span>La mise en route</a>
+      <a href="#prix"><span class="n">4</span>Le prix</a>
+      <a href="#apres"><span class="n">5</span>Ce qui peut venir après</a>
+      <a href="#votre-part"><span class="n">6</span>Ce que ça demande</a>
+      <a href="#etapes"><span class="n">7</span>Modalités et suite</a>
+    </nav>
+    <div class="side-foot"><a href="mailto:guillaume@tractr.net">guillaume@tractr.net</a></div>
+  </aside>
+
+  <main>
+    <div class="cobrand">
+      <img class="cb-tractr" src="logo-tractr.png" alt="TRACTR">
+      <span class="cb-x">×</span>
+      <img class="cb-client" src="assets/logo-nide.png" alt="NID:E">
+    </div>
+    <div class="line-accent"></div>
+    <span class="eyebrow">Proposition d'accompagnement Claude</span>
+    <h1>Le pied à l'étrier, puis le rythme</h1>
+    <p class="tagline">Quatre semaines pour installer Claude dans votre quotidien et vous remettre un premier assistant qui tourne. À prix ferme, et sans aucune suite obligatoire.</p>
+    <p class="meta">TRACTR pour Émilie Rozand et Mathilde Tréhu · suite à notre appel du 7 septembre · septembre 2026</p>
+
+    <div class="letter">
+      <div class="ph"><img src="assets/photo-guillaume.png" alt="Guillaume Commagnac" onerror="this.style.display='none'"></div>
+      <div>
+        <p class="hello">Émilie, Mathilde,</p>
+        <p>Merci pour l'échange du 7 septembre. Une phrase m'est restée en écrivant ce document : «&nbsp;tout seul, on ne le fera pas&nbsp;». Elle est juste, et elle vaut pour à peu près tout le monde. Ce qui manque rarement, c'est l'envie. Ce qui manque presque toujours, c'est le premier geste et un créneau dans l'agenda.</p>
+        <p>Alors on commence petit et concret : une mise en route de quatre semaines, deux séances à deux, et un premier assistant qu'on construit pour vous entre les deux. Au bout, vous aurez quelque chose qui tourne sur vos vrais dossiers, et vous déciderez à ce moment-là si vous voulez une suite. Pas avant, et sans rien signer de plus aujourd'hui.</p>
+        <p class="sign">Guillaume<span>Directeur France, TRACTR</span></p>
+      </div>
+    </div>
+
+    <div class="glance">
+      <div><b>1 500 € HT</b><small>la mise en route, prix ferme</small></div>
+      <div><b>4 semaines</b><small>2 séances, et ce qu'on construit entre</small></div>
+      <div><b>Aucune suite</b><small>obligatoire, rien ne se reconduit</small></div>
+      <div><b>Puis 400 € / mois</b><small>si, et seulement si, vous le voulez</small></div>
+    </div>
+
+    <!-- ===== 1 ===== -->
+    <h2 id="entendu"><span class="h2n">1</span>Ce qu'on a entendu</h2>
+    <p class="lead">Votre journée au vert a posé un constat net : le fond ne pose aucun problème, aucun retour négatif sur vos contenus. C'est la forme qui a vieilli, et c'est le quotidien qui vous mange.</p>
+    <p>Vous avez passé juillet à prospecter, ça a produit des rendez-vous qui se tiennent en ce moment, et vous n'avez rien pu mettre en place côté outils. Pas par choix, faute de temps.</p>
+
+    <h3>Trois sujets, dans votre ordre à vous</h3>
+    <div class="grid g3">
+      <div class="card c-blue">
+        <div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5"/></svg></div>
+        <h3 style="margin-top:0">1. Par où commencer</h3>
+        <p style="font-size:13px;color:var(--ink2);margin-bottom:0">Le vrai blocage, et il ne se règle pas avec de la documentation. Il faut un premier geste concret, à deux, sur vos vrais outils.</p>
+        <p class="said">«&nbsp;Il faut que tu nous mettes le pied à l'étrier.&nbsp;»<small>Émilie, le 7 septembre</small></p>
+      </div>
+      <div class="card c-yellow">
+        <div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
+        <h3 style="margin-top:0">2. Deux irritants</h3>
+        <p style="font-size:13px;color:var(--ink2);margin-bottom:0">La prospection au quotidien : relances, réponses aux mails, suivi client. Et votre deck : quinze à vingt slides quasi identiques, dont deux ou trois changent selon le client, repris à la main entre le premier rendez-vous et la propale.</p>
+        <p class="said">«&nbsp;Ce serait canon.&nbsp;»<small>Émilie, à propos d'un deck préparé automatiquement</small></p>
+      </div>
+      <div class="card c-pink">
+        <div class="cico"><svg viewBox="0 0 24 24"><path d="M9 7V3M15 7V3"/><path d="M6 7h12v4a6 6 0 0 1-12 0z"/><path d="M12 17v4"/></svg></div>
+        <h3 style="margin-top:0">3. Des outils qui ne se parlent pas</h3>
+        <p style="font-size:13px;color:var(--ink2);margin-bottom:0">Wix, Brevo, HubSpot, les formulaires et tableurs Google, Discord. Chacun tient sa part, aucun ne connaît le contexte de l'autre. C'est vous qui faites le rapprochement, à chaque fois.</p>
+      </div>
+    </div>
+
+    <h3>Ce qu'on va relier</h3>
+    <div class="techflow">
+      <div class="tf-col">
+        <div class="tf-label">Vos outils</div>
+        <div class="tf-node"><img class="tf-logo" src="assets/logo-gmail.svg" alt=""><div>Gmail<small>dès la mise en route</small></div></div>
+        <div class="tf-node"><img class="tf-logo" src="assets/logo-hubspot.svg" alt=""><div>HubSpot<small>dès la mise en route</small></div></div>
+        <div class="tf-node"><img class="tf-logo" src="assets/logo-drive.svg" alt=""><div>Google Drive<small>dès la mise en route</small></div></div>
+        <div class="tf-node later"><img class="tf-logo" src="assets/logo-wix.svg" alt=""><div>Wix<small>connecteur natif, ensuite</small></div></div>
+        <div class="tf-node later"><img class="tf-logo" src="assets/logo-brevo.svg" alt=""><div>Brevo, Discord<small>à regarder ensemble</small></div></div>
+      </div>
+      <div class="tf-arrow">→</div>
+      <div class="tf-col tf-core">
+        <div class="tf-label" style="visibility:hidden">.</div>
+        <div class="tf-group">
+          <div class="tf-node tf-claude"><img class="tf-logo" src="assets/logo-claude.png" alt="">Claude<small>qui connaît NID:E</small></div>
+        </div>
+      </div>
+      <div class="tf-arrow">→</div>
+      <div class="tf-col">
+        <div class="tf-label">Ce que vous en tirez</div>
+        <div class="tf-group">
+          <div class="tf-node tf-chip">Des relances et réponses prêtes à relire</div>
+          <div class="tf-node tf-chip">Votre deck préparé après le premier rendez-vous</div>
+          <div class="tf-node tf-chip">Votre semaine commerciale, le lundi matin</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Et Wix ? Vous avez posé la question, on a vérifié</h3>
+    <div class="callout v1"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><b>Oui, et c'est mieux qu'espéré.</b> Wix publie son propre connecteur, intégré nativement dans Claude : rien à installer, il suffit de l'activer avec votre compte Wix. Il permet de lire et modifier le contenu de votre site par instruction, collections et médias compris, donc de faire l'inventaire de votre espace membre sans passer par l'interface une page à la fois. Ce qu'il ne fait pas : corriger tout seul l'affichage de vos PDF sur téléphone. Ça, c'est une décision de mise en page, et elle vient plus tard, quand vous serez autonomes sur l'outil.</div>
+
+    <!-- ===== 2 ===== -->
+    <h2 id="facturation"><span class="h2n">2</span>Deux choses différentes, deux façons de payer</h2>
+    <p class="lead">C'est la clarification qu'on doit à ce dossier, et elle explique tous les prix qui suivent. Vous former et fabriquer pour vous, ce sont deux métiers, deux rythmes, et ils ne se facturent pas de la même façon.</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="cico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><polyline points="16 10 21 7 21 17 16 14"/></svg></div>
+        <h3 style="margin-top:0;font-size:16px">La formation, au temps</h3>
+        <p style="font-size:13px;margin-bottom:0">Les séances, les démonstrations sur vos vrais dossiers, les questions entre deux rendez-vous. Vous en êtes témoins de bout en bout : vous voyez exactement ce que vous achetez, donc ça se compte en heures passées avec vous.</p>
+      </div>
+      <div class="card">
+        <div class="cico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div>
+        <h3 style="margin-top:0;font-size:16px">La production, au forfait</h3>
+        <p style="font-size:13px;margin-bottom:0">Les assistants qu'on fabrique pour vous entre les séances. Vous n'avez pas à compter nos heures ni à porter le risque si c'est plus long que prévu : chaque assistant a un prix annoncé avant d'être lancé.</p>
+      </div>
+    </div>
+
+    <div class="callout"><b>Pourquoi on vous le dit :</b> c'est ce qui vous permet de couper où vous voulez. Vous pouvez garder la formation et arrêter la production, l'inverse, ou les deux. Un forfait unique vous enfermerait dans un bloc à prendre ou à laisser, et ce n'est pas ce dont vous avez besoin aujourd'hui.</div>
+
+    <!-- ===== 3 ===== -->
+    <h2 id="mise-en-route"><span class="h2n">3</span>La mise en route, et rien d'autre pour l'instant</h2>
+    <p class="lead">Un seul engagement à prendre aujourd'hui : quatre semaines, deux séances, un premier assistant qui tourne. C'est le seul « oui » qu'on vous demande, et il contient les deux : de la formation, et de la production.</p>
+
+    <div class="sessions">
+      <div class="session">
+        <div class="body"><div class="top"><div class="num">1</div><h4>Séance 1 : cartographier et installer</h4></div><p>Qui fait quoi entre vous deux, d'où viennent vos données, ce qui se répète chaque semaine. Installation sur vos deux postes Windows, panorama, quel modèle pour quel usage. On choisit ensemble le premier assistant à construire.</p></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>2 h ensemble.</b> Vous repartez avec votre fichier de contexte NID:E, écrit en séance. C'est la fondation de tout le reste, on ne vous le laisse pas en devoir.</span></div>
+      </div>
+      <div class="session">
+        <div class="body"><div class="top"><div class="num">2</div><h4>Entre les deux : on construit</h4></div><p>Connexion de vos mails, de HubSpot et de votre Drive. Construction de votre premier assistant, celui choisi en séance 1. Rédaction de votre guide en ligne, avec le chapitre d'installation Windows déjà écrit pour un autre accompagnement.</p></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>Environ 6 h côté TRACTR.</b> Rien à faire de votre côté pendant ce temps-là.</span></div>
+      </div>
+      <div class="session">
+        <div class="body"><div class="top"><div class="num">3</div><h4>Séance 2 : remise et essai réel</h4></div><p>On installe, on essaie l'assistant sur de vrais dossiers, on ajuste devant vous. Puis on vous montre comment le modifier vous-mêmes, et on repère ensemble les deux ou trois usages qui mériteraient une suite.</p></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>2 h ensemble.</b> Vous repartez avec l'assistant qui tourne, et que vous savez modifier.</span></div>
+      </div>
+      <div class="session">
+        <div class="body"><div class="top"><div class="num">4</div><h4>Un mois plus tard : le point de contrôle</h4></div><p>On vérifie que l'usage a tenu, on débloque ce qui a coincé, et on regarde franchement si une suite a du sens pour vous. Si la réponse est non, on vous le dira aussi.</p></div>
+        <div class="out"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><b>30 min ensemble.</b> Compris, que vous preniez une suite ou non.</span></div>
+      </div>
+    </div>
+
+    <div class="callout v1"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><b>Le premier assistant se choisit entre deux candidats</b>, et c'est vous qui tranchez en séance 1 : la relance commerciale, qui lit vos échanges et HubSpot et prépare vos relances dans votre ton, ou la préparation de deck, qui produit après le premier rendez-vous les deux ou trois slides qui changent, dans votre gabarit.</div>
+
+    <!-- ===== 4 ===== -->
+    <h2 id="prix"><span class="h2n">4</span>Le prix</h2>
+    <p class="lead">Un montant, ferme, pour un périmètre fermé. Pas d'abonnement qui démarre en silence, pas de reconduction, pas de conditions cachées.</p>
+
+    <div class="pricing">
+      <div class="pblock">
+        <div class="ph"><div class="lbl">La mise en route</div><b>1 500 € HT <small>prix ferme</small></b></div>
+        <div class="pb">Quatre semaines, du premier rendez-vous au point de contrôle.
+          <ul class="checklist">
+            <li>Deux séances de deux heures, à deux, en visio</li>
+            <li>La cartographie de vos usages et votre fichier de contexte</li>
+            <li>L'installation sur vos deux postes et la connexion de vos outils</li>
+            <li>Votre premier assistant, construit et remis avec son mode d'emploi</li>
+            <li>Votre guide en ligne, qui reste chez vous</li>
+            <li>Les enregistrements, le support par écrit, et le point à 30 jours</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pblock">
+        <div class="ph"><div class="lbl">Ce que ça vous engage</div><b>Rien <small>au-delà</small></b></div>
+        <div class="pb">C'est le point le plus important de cette page.
+          <ul class="checklist">
+            <li>Aucune reconduction automatique</li>
+            <li>Aucun abonnement déclenché par défaut</li>
+            <li>Si ça vous a suffi, ça s'arrête là et c'est très bien</li>
+            <li>La suite se décide au point de contrôle, pas avant</li>
+          </ul>
+          <p style="font-size:13px;color:var(--muted);margin:14px 0 0">Facturation : 50 % à la commande, solde à la remise en séance 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout"><b>Et le devis de juin ?</b> Il était de 2 000 € HT pour trois séances de formation. Celui-ci le remplace : il coûte moins cher, il dure moins longtemps, et il ne se contente pas de vous former, il vous laisse un outil qui tourne. C'est ce que vous nous avez demandé le 7 septembre.</div>
+
+    <!-- ===== 5 ===== -->
+    <h2 id="apres"><span class="h2n">5</span>Ce qui peut venir après</h2>
+    <p class="lead">Rien de ce qui suit n'est à décider aujourd'hui. C'est écrit pour que vous sachiez où mène le chemin, et ce que ça coûte si vous le prenez. Les deux lignes sont indépendantes : vous pouvez prendre l'une sans l'autre.</p>
+
+    <div class="pricing">
+      <div class="pblock">
+        <div class="ph"><div class="lbl">L'accompagnement, la formation</div><b>400 € HT <small>par mois</small></b></div>
+        <div class="pb">Deux séances d'une heure par mois, à deux, sur vos dossiers du moment.
+          <ul class="checklist">
+            <li>Le guide enrichi à chaque séance</li>
+            <li>Les enregistrements avec transcript</li>
+            <li>Le support par écrit, réponse sous 48 heures ouvrées</li>
+            <li>Sans engagement de durée, vous arrêtez quand ça ne sert plus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pblock">
+        <div class="ph"><div class="lbl">Un assistant de plus, la production</div><b>400 à 800 € HT <small>par assistant</small></b></div>
+        <div class="pb">Selon ce qu'il doit lire et produire, devis ferme avant de lancer.
+          <ul class="checklist">
+            <li>Cadré avec vous en séance, puis estimé</li>
+            <li>Construit par nous, remis avec son mode d'emploi</li>
+            <li>Un prix annoncé d'avance, jamais une facture surprise</li>
+            <li>Vous en prenez un, ou aucun</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Les trois candidats sortis de notre appel</h3>
+    <div class="grid g3">
+      <div class="card" style="margin:0"><h3 style="margin-top:0;font-size:15px">L'assistant de relance</h3><p style="font-size:13px;margin-bottom:0">Il lit vos échanges et HubSpot, et prépare les relances et les réponses dans votre ton. Vous relisez, vous envoyez.</p></div>
+      <div class="card" style="margin:0"><h3 style="margin-top:0;font-size:15px">L'assistant deck</h3><p style="font-size:13px;margin-bottom:0">À partir des notes du premier rendez-vous, il produit les deux ou trois slides qui changent, dans votre gabarit.</p></div>
+      <div class="card" style="margin:0"><h3 style="margin-top:0;font-size:15px">Le point du lundi</h3><p style="font-size:13px;margin-bottom:0">Chaque lundi matin, l'état de vos affaires en cours, les relances à faire et les rendez-vous de la semaine, en une page.</p></div>
+    </div>
+    <p class="note" style="margin-top:14px">Le premier est compris dans la mise en route. Les deux autres se décident plus tard, ou jamais. Si un besoin plus utile apparaît en séance, il passe devant.</p>
+
+    <!-- ===== 6 ===== -->
+    <h2 id="votre-part"><span class="h2n">6</span>Ce que ça demande de votre côté</h2>
+    <p class="lead">Vous avez demandé à savoir ce que ça représente pour vous. La réponse honnête :</p>
+    <div class="grid g3 kpicards">
+      <div class="card"><div class="lbl">Pendant la mise en route</div><b style="font-size:17px">4 h 30 de rendez-vous</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">étalées sur quatre à cinq semaines</p></div>
+      <div class="card"><div class="lbl">Entre les deux séances</div><b style="font-size:17px">1 heure par semaine, chacune</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">sur du travail que vous faites déjà</p></div>
+      <div class="card"><div class="lbl">À chaque séance</div><b style="font-size:17px">Quelque chose de fait</b><p style="margin:6px 0 0;font-size:13px;color:var(--muted)">un fichier, un assistant, un plan</p></div>
+    </div>
+    <p>Ce n'est pas du travail en plus, c'est du travail que vous faites déjà, refait autrement pendant quelques semaines le temps que le réflexe se prenne. Ouvrir Claude en même temps que vos mails le matin. Lui passer une tâche que vous auriez faite à la main. Noter ce qui a coincé pour qu'on le reprenne à la séance suivante.</p>
+    <p>On le dit franchement parce que c'est ce qui fait la différence. On a vu la même équipe progresser à deux vitesses selon qui avait changé ses habitudes et qui attendait la séance suivante. On vous donnera le maximum de matière, et la progression se joue entre les séances.</p>
+
+    <!-- ===== 7 ===== -->
+    <h2 id="etapes"><span class="h2n">7</span>Modalités et suite</h2>
+    <p class="lead">Kick-off fin septembre ou début octobre, selon vos disponibilités. Le créneau de la deuxième séance se pose dès la première.</p>
+
+    <div class="card">
+      <div class="phase"><div class="p">7 septembre</div><div>Appel de reprise : vos trois sujets, vos contraintes, votre calendrier.</div><div class="d done">fait</div></div>
+      <div class="phase"><div class="p">Votre oui</div><div>Vous validez la mise en route, on envoie le devis et on pose la date.</div><div class="d wait">de votre côté</div></div>
+      <div class="phase"><div class="p">Séance 1</div><div>Fin septembre ou début octobre. On cartographie, on installe, on choisit le premier assistant.</div><div class="d">fin sept. / oct.</div></div>
+      <div class="phase"><div class="p">Séance 2</div><div>Trois à quatre semaines plus tard. Remise de l'assistant et essai sur vos vrais dossiers.</div><div class="d">octobre</div></div>
+      <div class="phase"><div class="p">Point de contrôle</div><div>Un mois après la remise. On regarde ce qui a tenu, et vous décidez d'une suite ou non.</div><div class="d">novembre</div></div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card"><h3 style="margin-top:0">Facturation</h3><p style="font-size:13.5px;margin-bottom:0">50 % à la commande, solde à la remise en séance 2. Le devis signé et l'acompte précèdent la séance 1. Si vous prenez une suite, l'accompagnement est facturé en début de chaque mois, et chaque assistant fait l'objet de son propre devis.</p></div>
+      <div class="card"><h3 style="margin-top:0">Cadre</h3><p style="font-size:13.5px;margin-bottom:0">Une séance déplacée n'est pas perdue, elle se reporte. Le support entre les séances se fait par écrit, réponse sous 48 heures ouvrées ; il couvre les questions et le déblocage. Guillaume est absent du 17 au 24 octobre. Validité de la proposition : 30 jours.</p></div>
+    </div>
+
+    <h3>Les prochaines étapes</h3>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div class="txt"><b>Nous dire oui pour la mise en route,</b> ou ce qui vous manque pour trancher. Si vous préférez en parler de vive voix, on se cale trente minutes à trois avec Mathilde.</div><div class="when"><a href="https://cal.com/guillaume-tractr/" target="_blank" rel="noopener">réserver un créneau</a></div></div>
+      <div class="step"><div class="num">2</div><div class="txt"><b>Poser la date de la séance 1,</b> fin septembre ou début octobre.</div><div class="when">avec le oui</div></div>
+      <div class="step"><div class="num">3</div><div class="txt"><b>Nous confirmer qui utilise quoi entre vous deux,</b> en deux lignes ou une note vocale. Ça nous sert à préparer la première séance sur vos vrais usages plutôt que sur des exemples génériques.</div><div class="when">avant la séance 1</div></div>
+    </div>
+    <div class="callout"><b>Pour démarrer :</b> la mise en route, 1 500 € HT, première séance début octobre. Une réponse par mail suffit, on s'occupe du reste.</div>
+
+    <div class="signoff">
+      <img src="assets/photo-guillaume.png" alt="" onerror="this.style.display='none'">
+      <p>Au plaisir de démarrer avec vous deux.<br>
+      <b>Guillaume Commagnac</b>, Directeur France, TRACTR<br>
+      <a href="mailto:guillaume@tractr.net">guillaume@tractr.net</a> · 06 99 08 86 32 · <a href="https://www.linkedin.com/in/guillaumecommagnac/" target="_blank" rel="noopener">LinkedIn</a></p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* Navigation : surligne l'entrée active au scroll + scroll doux au clic. NE PAS modifier. */
+const links=[...document.querySelectorAll('#nav a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  let i=secs.length-1;
+  for(let k=0;k<secs.length;k++){
+    if(secs[k].getBoundingClientRect().top>120){i=k-1;break}
+  }
+  if(i<0)i=0;
+  links.forEach(l=>l.classList.remove('active'));
+  if(links[i])links[i].classList.add('active');
+}
+document.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+links.forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:reduceMotion?'auto':'smooth'});
+}));
+window.addEventListener('beforeprint',()=>document.querySelectorAll('details.fold').forEach(d=>d.open=true));
+
+/* Retour en haut. NE PAS retirer : preference actee, voir PRESET.md. */
+const bt=document.createElement('button');
+bt.className='backtop';bt.type='button';bt.setAttribute('aria-label','Retour en haut');bt.textContent='\u2191';
+document.body.appendChild(bt);
+bt.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+function onBacktop(){bt.classList.toggle('show',window.scrollY>600)}
+document.addEventListener('scroll',onBacktop,{passive:true});onBacktop();
+</script>
+</body>
+</html>
