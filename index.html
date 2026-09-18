@@ -245,7 +245,8 @@
   .tf-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:var(--acc);font-weight:700;flex:0 0 auto;padding:0 2px}
   @media(max-width:680px){.techflow{flex-direction:column}.tf-arrow{transform:rotate(90deg);padding:4px 0}.tf-col.tf-core{flex:1}}
   /* lien vers le devis */
-  .dl{display:inline-block;font-family:var(--display);font-size:13px;font-weight:700;color:#fff;background:var(--acc);border:2px solid var(--border);border-radius:var(--r);padding:9px 16px;text-decoration:none;box-shadow:2px 2px 0 var(--border-light)}
+  .dl{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:13px;font-weight:700;color:#fff;background:var(--acc);border:2px solid var(--border);border-radius:var(--r);padding:9px 16px;text-decoration:none;box-shadow:2px 2px 0 var(--border-light)}
+  .dl svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
   .dl:hover{box-shadow:3px 3px 0 var(--border-light);transform:translate(-1px,-1px)}
   /* les quatre temps de la mise en route, deux par ligne */
   .sessions{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
@@ -552,7 +553,7 @@
     <div class="card c-green">
       <p style="margin-top:0"><b>Un devis d'une page, à nous renvoyer signé avec la mention « bon pour accord ».</b></p>
       <p style="font-size:13.5px;margin-bottom:0">À réception, deux choses partent en même temps : on bloque vos deux créneaux dans nos agendas, et la facture vous est envoyée. Le règlement précède la première séance. Il n'y a pas de contrat-cadre à signer ni de conditions à négocier derrière.</p>
-      <p style="margin:14px 0 0"><a href="devis-nide-mise-en-route.pdf" class="dl">Ouvrir le devis (PDF)</a></p>
+      <p style="margin:14px 0 0"><a href="devis-nide-mise-en-route.pdf" class="dl" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><polyline points="8 10.5 12 14.5 16 10.5"/><path d="M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2"/></svg>Ouvrir le devis (PDF)</a></p>
     </div>
 
     <h3>Les prochaines étapes</h3>
